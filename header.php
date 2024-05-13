@@ -17,6 +17,7 @@
     <div class="container">
        <div class="pos_page_inner"> 
        <div class="header_area">
+        <img src="tttl/Banner-PQTjpg.jpg" alt="">
                                <!--header top--> 
                                 <div class="header_top">
                                    <div class="row align-items-center">
@@ -60,22 +61,45 @@
                                                     <a href="#"><i class="fa fa-shopping-cart"></i>Items - Tổng<i class="fa fa-angle-down"></i></a>
 
                                                     <!--mini cart-->
+                                                             
                                                     <div class="mini_cart">
+                                                    <?php
+                                                        include 'db.inc';
+                                                        
+                                                        $sql = "select * from doanmonweb.giohang";
+                                                        $result = mysqli_query($connect,$sql);
+                                                        $data = [];
+                                                        $rowNum = 1;
+                                                        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                                            $data[] = array(
+                                                                'MaSach' => $row['MaSach'],
+                                                                'TenSach' => $row['TenSach'],
+                                                                'Gia' => $row['Gia'],
+                                                                'SL' => $row['SL'],
+                                                                'img' => $row['img'],
+                                                            );
+                                                        }
+                                                    ?>       
+                                                    <?php
+                                                        foreach ($data as $row):
+                                                    ?>   
                                                         <div class="cart_item">
                                                            <div class="cart_img">
-                                                               <a href="#"><img src="tttl/83827_tam-thanh-va-loc-doi.jpg" alt=""></a>
+                                                               <img src="<?php echo $row['img']?>" alt="">
                                                            </div>
                                                             <div class="cart_info">
-                                                                <a href="#">TenSP</a>
-                                                                <span class="cart_price">Gia</span>
-                                                                <span class="quantity">Sl</span>
+                                                                <a href="#"><?php echo $row['TenSach']?></a>
+                                                                <span class="cart_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                                <span class="quantity"><?php echo $row['SL']?></span>
                                                             </div>
                                                             <div class="cart_remove">
                                                                 <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
                                                             </div>
                                                         </div>
+                                                    <?php endforeach;?>
+
                                                         <div class="cart_button">
-                                                            <a href="cart.php">Giỏ hàng</a>
+                                                            <a href="giohang.php">Giỏ hàng</a>
                                                         </div>
                                                     </div>
                                                     <!--mini cart end-->
@@ -93,16 +117,14 @@
                                                 <div class="main_menu d-none d-lg-block">
                                                     <nav>
                                                         <ul>
-                                                            <li class="active" style="background: #062746;"><a href="index.html">TRANG CHỦ</a></li>
+                                                            <li class="active" style="background: #062746;"><a href="index.php">TRANG CHỦ</a></li>
                                                             <li><a href="#">DANH MỤC</a>
                                                                 <div class="mega_menu jewelry">
                                                                     <div class="mega_items jewelry">
                                                                         <ul>
-                                                                            <li><a href="">Sách Tiếng Việt</a></li>
-                                                                            <li><a href="">English Books</a></li>
-                                                                            <li><a href="">VPP & Học cụ</a></li>
-                                                                            <li><a href="">Đồ Chơi</a></li>
-                                                                            <li><a href="">Phụ Kiện</a></li>
+                                                                            <li><a href="">Sách Văn Học</a></li>
+                                                                            <li><a href="">Sách Kỹ Năng</a></li>
+                                                                            <li><a href="">Sách Tiểu Thuyết</a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </div>

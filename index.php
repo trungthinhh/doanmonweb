@@ -47,11 +47,9 @@
                                     <div class="sidebar_widget catrgorie mb-35">
                                         <h3>Danh mục</h3>
                                         <ul>
-                                            <li><a href="">Sách Tiếng Việt</a></li>
-                                            <li><a href="">English Books</a></li>
-                                            <li><a href="">VPP & Học cụ</a></li>
-                                            <li><a href="">Đồ Chơi</a></li>
-                                            <li><a href="">Phụ Kiện</a></li>
+                                            <li><a href="">Sách Văn Học</a></li>
+                                            <li><a href="">Sách Kỹ Năng</a></li>
+                                            <li><a href="">Sách Tiểu Thuyết</a></li>
                                         </ul>
                                     </div>
                                     <!--categorie menu end-->
@@ -82,23 +80,53 @@
                                         </div>
                                         <div class="row">
                                             <div class="product_active owl-carousel">
-                                                <div class="col-lg-3">
+                                            <?php
+                                                    // require("connect.php");
+                                                include 'db.inc';
+                                                $sql = "select * from product";
+                                                $result = mysqli_query($connect,$sql);
+                                                $data = [];
+                                                $rowNum = 1;
+                                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                                    $data[] = array(
+                                                        'MaSach' => $row['MaSach'],
+                                                        'TenSach' => $row['TenSach'],
+                                                        'Gia' => $row['Gia'],
+                                                        'SL' => $row['SL'],
+                                                        'img' => $row['img'],
+                                                        'MoTa' => $row['MoTa'],
+                                                        'MaDM' => $row['MaDM'],
+                                                    );
+                                                }
+                                                ?>    
+                                                <?php 
+                                                    foreach ($data as $row):
+                                                ?>
+                                                <div class="col-lg-3">                                               
                                                     <div class="single_product">
                                                         <div class="product_thumb">
-                                                           <a href="chitietsanpham.php"><img src="tttl/atomic_habit.jpg" alt=""></a> 
+                                                           <a href="" ><img src="<?php echo $row['img']?>" alt=""></a> 
                                                            <div class="img_icone">
-                                                               <img src="tttl/atomic_habit.jpg" alt="">
+                                                               <img src="<?php echo $row['img']?>" alt="">
                                                            </div>
                                                            <div class="product_action">
-                                                               <a href="#"> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                                               <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                                            </div>
                                                         </div>
                                                         <div class="product_content">
-                                                            <span class="product_price">100</span>
-                                                            <h3 class="product_title"><a href="chitietsanpham.php">Cô tiên xanh</a></h3>
+                                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                            <h3 class="product_title">                                                               
+                                                                    <?php echo $row['TenSach']?>
+                                                            </h3>
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <ul>
+                                                                <li><a href='chitietsanpham.php?MaSach="<?php echo $row['MaSach']?>"'>Xem Chi Tiết</a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            <?php endforeach;?>    
                                             </div> 
                                         </div>       
                                     </div> 
@@ -107,27 +135,57 @@
                                     <!--featured product start--> 
                                     <div class="featured_product">
                                         <div class="block_title">
-                                            <h3>SÁCH TIẾNG VIỆT</h3>
+                                            <h3>SÁCH VĂN HỌC</h3>
                                         </div>
                                         <div class="row">
                                             <div class="product_active owl-carousel">
-                                                <div class="col-lg-3">
+                                            <?php
+                                                    // require("connect.php");
+                                                include 'db.inc';
+                                                $sql = "select dm.MaDM,dm.TenSP,pd.MaSach,Gia,SL,
+                                                MoTa,pd.img,TenSach FROM product AS pd,danhmuc AS dm 
+                                                WHERE pd.MaDM=dm.MaDM and dm.TenSP=N'Văn Học'";
+                                                $result = mysqli_query($connect,$sql);
+                                                $data = [];
+                                                $rowNum = 1;
+                                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                                    $data[] = array(
+                                                        'MaSach' => $row['MaSach'],
+                                                        'TenSach' => $row['TenSach'],
+                                                        'Gia' => $row['Gia'],
+                                                        'SL' => $row['SL'],
+                                                        'img' => $row['img'],
+                                                        'MoTa' => $row['MoTa'],
+                                                        'MaDM' => $row['MaDM'],
+                                                    );
+                                                }
+                                                ?>    
+                                                <?php 
+                                                    foreach ($data as $row):
+                                                ?>
+                                                <div class="col-lg-3">                                               
                                                     <div class="single_product">
                                                         <div class="product_thumb">
-                                                           <a href="chitietsanpham.php"><img src="tttl/atomic_habit.jpg" alt=""></a> 
-                                                           <div class="hot_img">
-                                                               <img src="tttl/atomic_habit.jpg" alt="">
+                                                           <a href="" ><img src="<?php echo $row['img']?>" alt=""></a> 
+                                                           <div class="img_icone">
+                                                               <img src="<?php echo $row['img']?>" alt="">
                                                            </div>
                                                            <div class="product_action">
-                                                               <a href="#"> <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
+                                                               <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                                            </div>
                                                         </div>
                                                         <div class="product_content">
-                                                            <span class="product_price">100</span>
-                                                            <h3 class="product_title"><a href="chitietsanpham.php">Cô tiên xanh</a></h3>
+                                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                            <h3 class="product_title"><?php echo $row['TenSach']?></h3>
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <ul>
+                                                                <li><a href='chitietsanpham.php?MaSach="<?php echo $row['MaSach']?>"'>Xem Chi Tiết</a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            <?php endforeach;?> 
                                             </div> 
                                         </div> 
                                     </div>     
@@ -164,27 +222,57 @@
                                     <div class="banner_area mb-60">
                                         <div class="featured_product">
                                             <div class="block_title">
-                                                <h3>TIỂU THUYẾT</h3>
+                                                <h3>SÁCH KỸ NĂNG</h3>
                                             </div>
                                             <div class="row">
                                                 <div class="product_active owl-carousel">
-                                                    <div class="col-lg-3">
-                                                        <div class="single_product">
-                                                            <div class="product_thumb">
-                                                               <a href="chitietsanpham.php"><img src="tttl/atomic_habit.jpg" alt=""></a> 
-                                                               <div class="hot_img">
-                                                                   <img src="tttl/atomic_habit.jpg" alt="">
-                                                               </div>
-                                                               <div class="product_action">
-                                                                   <a href="#"> <i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</a>
-                                                               </div>
-                                                            </div>
-                                                            <div class="product_content">
-                                                                <span class="product_price">100</span>
-                                                                <h3 class="product_title"><a href="chitietsanpham.php">Cô tiên xanh</a></h3>
-                                                            </div>
+                                                <?php
+                                                    // require("connect.php");
+                                                include 'db.inc';
+                                                $sql = "select dm.MaDM,dm.TenSP,pd.MaSach,Gia,SL,
+                                                MoTa,pd.img,TenSach FROM product AS pd,danhmuc AS dm 
+                                                WHERE pd.MaDM=dm.MaDM and dm.TenSP=N'Kỹ Năng'";
+                                                $result = mysqli_query($connect,$sql);
+                                                $data = [];
+                                                $rowNum = 1;
+                                                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                                    $data[] = array(
+                                                        'MaSach' => $row['MaSach'],
+                                                        'TenSach' => $row['TenSach'],
+                                                        'Gia' => $row['Gia'],
+                                                        'SL' => $row['SL'],
+                                                        'img' => $row['img'],
+                                                        'MoTa' => $row['MoTa'],
+                                                        'MaDM' => $row['MaDM'],
+                                                    );
+                                                }
+                                                ?>    
+                                                <?php 
+                                                    foreach ($data as $row):
+                                                ?>
+                                                <div class="col-lg-3">                                               
+                                                    <div class="single_product">
+                                                        <div class="product_thumb">
+                                                           <a href="" ><img src="<?php echo $row['img']?>" alt=""></a> 
+                                                           <div class="img_icone">
+                                                               <img src="<?php echo $row['img']?>" alt="">
+                                                           </div>
+                                                           <div class="product_action">
+                                                               <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                                           </div>
+                                                        </div>
+                                                        <div class="product_content">
+                                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                            <h3 class="product_title"><?php echo $row['TenSach']?></h3>
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <ul>
+                                                                <li><a href='chitietsanpham.php?MaSach="<?php echo $row['MaSach']?>"'>Xem Chi Tiết</a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <?php endforeach;?> 
                                                 </div> 
                                             </div> 
                                         </div>                                        
@@ -202,12 +290,13 @@
              <!--footer star-->
              <?php include_once 'footer.php' ?>
             <!--pos page end-->
-		<!-- all js here -->
+		
+    </body>
+</html>
+<!-- all js here -->
         <script src="assets\js\vendor\jquery-1.12.0.min.js"></script>
         <script src="assets\js\popper.js"></script>
         <script src="assets\js\bootstrap.min.js"></script>
         <script src="assets\js\ajax-mail.js"></script>
         <script src="assets\js\plugins.js"></script>
         <script src="assets\js\main.js"></script>
-    </body>
-</html>

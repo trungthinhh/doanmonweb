@@ -402,9 +402,9 @@
     visibility: visible;
 }
 .product_info ul li a:hover{
-    background: #009483;
+    background: #044785;
     color: #fff;
-    border-color: #009483;
+    border-color: #044785;
 }
 .single_product {
 	border: 1px solid transparent;
@@ -1637,7 +1637,8 @@
 	padding: 10px;
 }
 .table_desc table tbody tr td.product_thumb img {
-	width: inherit;
+	width: 60%;
+	height: 100%;
 }
 .table_desc table tbody tr td.product_name a {
 	color: #333;
