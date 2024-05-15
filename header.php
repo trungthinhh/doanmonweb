@@ -77,6 +77,7 @@
                                                                 'Gia' => $row['Gia'],
                                                                 'SL' => $row['SL'],
                                                                 'img' => $row['img'],
+                                                                'MaG' => $row['MaG'],
                                                             );
                                                         }
                                                     ?>       
@@ -88,12 +89,14 @@
                                                                <img src="<?php echo $row['img']?>" alt="">
                                                            </div>
                                                             <div class="cart_info">
-                                                                <a href="#"><?php echo $row['TenSach']?></a>
+                                                                <!-- <input type="hidden" id="MaG" val="<?php echo $row['MaG'];?>" value="<?php echo $row['MaG']; ?>"> -->
+
+                                                                <a href="#" id="tenSach"><?php echo $row['TenSach']?></a>
                                                                 <span class="cart_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
                                                                 <span class="quantity"><?php echo $row['SL']?></span>
                                                             </div>
                                                             <div class="cart_remove">
-                                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                                                <a title="Remove this item" href="#" onclick="deleteSP(<?php echo $row['MaG']?>)"><i class="fa fa-times-circle"></i></a>
                                                             </div>
                                                         </div>
                                                     <?php endforeach;?>
@@ -142,3 +145,21 @@
 </div>    
 </body>
 </html>
+<script>
+    //nút xóa
+    function deleteSP(MaG){
+            $.ajax('xoagiohang.php',{   
+                type: 'POST',  // http method
+                data: { 
+                    'MaG': MaG,                 
+                },  // data to submit
+                success: function (data, status, xhr) {
+                    alert(data);
+                    location.reload();
+                    // console.log(status);
+                } 
+            
+            });
+       
+    }
+</script>

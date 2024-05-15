@@ -87,7 +87,7 @@
                                         <input type="hidden" id="Hinh" value="<?php echo $row['img']; ?>">
 
                                         <h1 id=""><?php echo $row['TenSach']?></h1>
-                                        <h4 id="MaSach"><?php echo $row['MaSach']?></h4>
+                                        <p id="MaSach" style="color: #a7a4a2;">Mã sách:<?php echo $row['MaSach']?></p>
                                         <div class="content_price mb-15">
                                             <span id="Gia"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
                                         </div>
@@ -326,9 +326,11 @@
                 'hinh': hinh,
             },  // data to submit
             success: function (data, status, xhr) {
-                // alert(data);
-                console.log(data);
-                console.log(status);
+                alert(data);
+                location.reload();
+                // console.log(data);
+                // console.log(status);
+                
             }
 
         });

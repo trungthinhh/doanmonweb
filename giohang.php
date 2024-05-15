@@ -51,29 +51,63 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="product_remove">Hành động</th>
+                                                        <th class="product_remove">Mã sản phẩm</th>
                                                         <th class="product_thumb">Hình ảnh</th>
                                                         <th class="product_name">Tên sản phẩm</th>
-                                                        <th class="product-price">Giá</th>
-                                                        <th class="product_quantity">Số lượng</th>
-                                                        <th class="product_total">Tổng tiền</th>
+                                                        <th class="product_remove">Giá</th>
+                                                        <th class="product_remove">Số lượng</th>
+                                                        <th class="product_remove">Tổng tiền</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                <?php
+                                                    include 'db.inc';
+                                                    $sql = "select * from doanmonweb.giohang";
+                                                    $result = mysqli_query($connect,$sql);
+                                                    $data = [];
+                                                    $rowNum = 1;
+                                                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                                        $data[] = array(
+                                                            'MaSach' => $row['MaSach'],
+                                                            'TenSach' => $row['TenSach'],
+                                                            'Gia' => $row['Gia'],
+                                                            'SL' => $row['SL'],
+                                                            'img' => $row['img'],
+                                                            'MaG' => $row['MaG'],
+                                                        );
+                                                        
+                                                    }
+                                                ?>       
+                                                <?php
+                                                if(count($data)>0){
+                                                    $tong=0; 
+                                                    $tongsl=0;
+                                                    foreach ($data as $row):
+                                                        
+                                                        $tt = $row['Gia']*$row['SL'];
+                                                        $tong += $tt;  
+                                                          
+                                                        $tsl=$tt/$row['Gia'];       
+                                                        $tongsl += $tsl;     
+                                                ?>         
                                                     <tr>
-                                                       <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                                        <td class="product_thumb"><a href="#"><img src="tttl/83827_tam-thanh-va-loc-doi.jpg" alt=""></a></td>
-                                                        <td class="product_name"><a href="#">Tên sp</a></td>
-                                                        <td class="product-price">Giá</td>
-                                                        <td class="product_quantity"><input min="1" max="100" value="1" type="number"></td>
-                                                        <td class="product_total">Giá tổng</td>
-
-
+                                                        <td class="product_remove"><a href="#" onclick="deleteSP(<?php echo $row['MaG']?>)"><i class="fa fa-trash-o"></i></a></td>
+                                                        <td class="product_id" val="<?php echo $row['MaG']; ?>"><?php echo $row['MaG']?></td>
+                                                        <td class="product_thumb"><img src="<?php echo $row['img']?>" alt=""></td>
+                                                        <td class="product_name"><?php echo $row['TenSach']?></td>
+                                                        <td class="product-price" id="price<?php echo $row['MaG']?>" val="<?php echo $row['Gia']?>"><?php echo number_format($row['Gia'],0)?></td>
+                                                        <td class="product_quantity">
+                                                            <input min="1" max="100" type="number" class="product_sl" 
+                                                                id="soluong<?php echo $row['MaG']?>" value="<?php echo $row['SL']?>" 
+                                                                val="<?php echo $row['SL']?>" onChange="changeQuantity(<?php echo $row['MaG']; ?>)"></td>
+                                                        <td class="product_total" id="total<?php echo $row['MaG']?>" val="<?php echo number_format($row['Gia']*$row['SL'])?>"><?php echo number_format($row['Gia']*$row['SL'],0)?></td>
                                                     </tr>
+                                                <?php endforeach;}?>
                                                 </tbody>
                                             </table>   
                                                 </div>  
                                                 <div class="cart_submit">
-                                                    <button type="submit">Cập nhật</button>
+                                                    <button type="submit" onclick="updateSP()" style="cursor: hand;">Cập nhật</button>
                                                 </div>      
                                             </div>
                                          </div>
@@ -87,11 +121,11 @@
                                                     <div class="coupon_inner">
                                                        <div class="cart_subtotal">
                                                            <p>Tổng số lượng mặt hàng</p>
-                                                           <p class="cart_amount">Sl</p>
+                                                           <p class="cart_sl" val="<?php echo $tongsl;?>"><?php echo number_format($tongsl)?></p>
                                                        </div>
                                                        <div class="cart_subtotal ">
                                                            <p>Tổng giỏ hàng</p>
-                                                           <p class="cart_amount">Tổng</p>
+                                                           <p class="cart_amount" val="<?php echo $tong;?>"><?php echo number_format($tong,0)." "."đ"?></p>
                                                        </div>
                                                     </div>
                                                 </div>
@@ -113,11 +147,6 @@
             <?php include_once 'footer.php' ?>
             <!--footer area end-->
             
-            
-            
-            
-      
-		
 		<!-- all js here -->
         <script src="assets\js\vendor\jquery-1.12.0.min.js"></script>
         <script src="assets\js\popper.js"></script>
@@ -125,5 +154,119 @@
         <script src="assets\js\ajax-mail.js"></script>
         <script src="assets\js\plugins.js"></script>
         <script src="assets\js\main.js"></script>
+        <script>
+        function changeQuantity(MaG){
+        //khai báo biến chứa giá trị số lượng
+        var quantity = $('#soluong'+MaG).val();
+        console.log('Quantity '+quantity);
+
+        var cost = $('#price'+MaG).text();
+        // console.log('befor cost '+cost);
+        // console.log(cost);
+        cost = Number(cost.replace(/,/g, ""));
+        // console.log('after cost '+cost);
+        $("#price"+MaG).attr('val', cost);
+
+        var sum = quantity * cost;
+        //var total = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sum);
+        var total = new Intl.NumberFormat('vi-VN').format(sum);
+        console.log('total '+total);
+        $("#total"+MaG).text(total);
+        $("#total"+MaG).attr('val', sum);
+
+        let elements = document.getElementsByClassName("product_total");
+        var sumTotal = 0;
+        for (let i = 0; i < elements.length; i++) {
+            let element = elements[i];
+            console.log('element ');
+            console.log(element);
+            let value = element.getAttribute('val');
+            console.log('i: '+i+'; value: '+value);
+            value = Number(value.replace(/,/g, ""));
+            sumTotal += value;
+            console.log('result total '+sumTotal);
+           
+        }
+        $('.cart_amount').text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(sumTotal));
+        $('.cart_amount').attr('val', sumTotal);
+
+        //tính tổng số lượng
+        var sumSL = sum/cost;
+        var totalSL = new Intl.NumberFormat('vi-VN').format(sumSL);
+        console.log('totalSL '+totalSL);
+        $("#soluong"+MaG).text(totalSL);
+        $("#soluong"+MaG).attr('val', sumSL);
+
+        let elementss = document.getElementsByClassName("product_sl");
+        var sumTotal1 = 0;
+        for (let i = 0; i < elementss.length; i++) {
+            let element1 = elementss[i];
+            console.log('element ');
+            console.log(element1);
+            let value1 = element1.getAttribute('val');
+            console.log('i: '+i+'; value: '+value1);
+            value1 = Number(value1.replace(/,/g, ""));
+            sumTotal1 += value1;
+            console.log('result total '+sumTotal1);
+        }
+        $('.cart_sl').text((sumTotal1));
+        $('.cart_sl').attr('val', sumTotal1);
+        }
+       
+            //nút xóa
+        function deleteSP(MaG){
+                $.ajax('xoagiohang.php',{   
+                    type: 'POST',  // http method
+                    data: { 
+                        'MaG': MaG,                 
+                    },  // data to submit
+                    success: function (data, status, xhr) {
+                        alert(data);
+                        location.reload();
+                        // console.log(status);
+                    } 
+                
+                });
+        
+        }
+
+        //nút cập nhật
+        function updateSP() {
+        let soluongElements = document.getElementsByClassName("product_sl");
+        let soluongValues = []; // Mảng để lưu trữ nhiều giá trị
+        for (let i = 0; i < soluongElements.length; i++) {
+            let element = soluongElements[i];
+            console.log('element ', element);
+            let value = element.getAttribute('val');
+            console.log('i: ' + i + '; value: ' + value);
+            soluongValues.push(Number(value)); //Chuyển đổi thành số và lưu trữ trong mảng
+        }
+
+        let MaGElements = document.getElementsByClassName("product_id");
+        let MaGValues = []; // This should also be an array
+        for (let i = 0; i < MaGElements.length; i++) {
+            let element = MaGElements[i];
+            console.log('element ', element);
+            let value = element.getAttribute('val');
+            console.log('i: ' + i + '; value: ' + value);
+            MaGValues.push(value); 
+        }
+
+        for (let i = 0; i < soluongValues.length; i++) {
+            $.ajax('capnhatgiohang.php', {
+                type: 'POST',
+                data: {
+                    'MaG': MaGValues[i],
+                    'soluong': soluongValues[i],
+                },
+                success: function (data, status, xhr) {
+                    alert(data);
+                    location.reload();
+
+                }
+            });
+        }
+    }
+        </script>
     </body>
 </html>
