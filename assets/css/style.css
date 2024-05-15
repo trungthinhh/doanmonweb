@@ -1619,10 +1619,10 @@
 	text-align: center;
 }
 .table_desc table thead tr th.product_remove, .table_desc table thead tr th.product-price, .table_desc table thead tr th.product_total {
-    min-width: 130px;
+    min-width: 120px;
 }
 .table_desc table thead tr th.product_name {
-    min-width: 300px;
+    min-width: 250px;
 }
 .table_desc table thead tr th.product_thumb, .table_desc table thead tr th.product_quantity {
 	min-width: 195px;
@@ -1728,7 +1728,7 @@
 .cart_subtotal p {
 	color: #333;
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 15px;
 }
 .cart_subtotal p.cart_amount {
 	font-size: 18px;
@@ -3074,4 +3074,14 @@
 /*services page css end*/
 .col-log{
 	width: 25%;
+}
+/*gio hang*/
+.cart_sub{
+	display: grid;
+    grid-template-columns: 40% 60%;
+}
+.cart_sub p{
+	color:black;
+	font-weight: bold;
+	font-size: 16px;
 }

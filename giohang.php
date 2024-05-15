@@ -51,7 +51,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="product_remove">Hành động</th>
-                                                        <th class="product_remove">Mã sản phẩm</th>
+                                                        <th class="product_remove">Mã giỏ hàng</th>
+                                                        <th class="product_remove" style="display:none;">Mã sách</th>
                                                         <th class="product_thumb">Hình ảnh</th>
                                                         <th class="product_name">Tên sản phẩm</th>
                                                         <th class="product_remove">Giá</th>
@@ -93,6 +94,7 @@
                                                     <tr>
                                                         <td class="product_remove"><a href="#" onclick="deleteSP(<?php echo $row['MaG']?>)"><i class="fa fa-trash-o"></i></a></td>
                                                         <td class="product_id" val="<?php echo $row['MaG']; ?>"><?php echo $row['MaG']?></td>
+                                                        <td class="product_idSP" style="display:none;" val="<?php echo $row['MaSach']; ?>"><?php echo $row['MaSach']?></td>
                                                         <td class="product_thumb"><img src="<?php echo $row['img']?>" alt=""></td>
                                                         <td class="product_name"><?php echo $row['TenSach']?></td>
                                                         <td class="product-price" id="price<?php echo $row['MaG']?>" val="<?php echo $row['Gia']?>"><?php echo number_format($row['Gia'],0)?></td>
@@ -105,10 +107,10 @@
                                                 <?php endforeach;}?>
                                                 </tbody>
                                             </table>   
-                                                </div>  
-                                                <div class="cart_submit">
-                                                    <button type="submit" onclick="updateSP()" style="cursor: hand;">Cập nhật</button>
-                                                </div>      
+                                            </div>  
+                                            <div class="cart_submit">
+                                                <button type="submit" onclick="updateSP()" style="cursor: hand;">Cập nhật</button>
+                                            </div>      
                                             </div>
                                          </div>
                                      </div>
@@ -125,22 +127,49 @@
                                                        </div>
                                                        <div class="cart_subtotal ">
                                                            <p>Tổng giỏ hàng</p>
-                                                           <p class="cart_amount" val="<?php echo $tong;?>"><?php echo number_format($tong,0)." "."đ"?></p>
+                                                           <p class="cart_amount" id="tongtien" val="<?php echo $tong;?>"><?php echo number_format($tong,0)." "?></p>
+                                                       </div>
+                                                       <div class="cart_submit">
+                                                            <button type="submit" onclick="dathang()" style="cursor: hand;background:red;">Đặt hàng</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="coupon_code">
+                                                    <h3>THÔNG TIN KHÁCH HÀNG</h3>
+                                                    <div class="coupon_inner">
+                                                       <div class="cart_sub">
+                                                           <p>Tên khách hàng:</p>
+                                                           <p class="cart_infor"><input type="text" value="uyên" id="tenkh"></p>
+                                                       </div>
+                                                       <div class="cart_sub ">
+                                                           <p>Địa chỉ:</p>
+                                                           <p class="cart_infor"><input type="text" value="mỹ tho" id="diachi"></p>
+                                                       </div>
+                                                       <div class="cart_sub ">
+                                                           <p>Số điện thoại:</p>
+                                                           <p class="cart_infor"><input type="text" value="0123456789" id="sdt"></p>
+                                                       </div>
+                                                       <div class="cart_sub ">
+                                                           <p>Email:</p>
+                                                           <p class="cart_infor"><input type="text" value="uyen12@gmail.com" id="email"></p>
                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <!--coupon code area end-->
                                 </form> 
                          </div>
                          <!--shopping cart area end -->
-
                     </div>
                     <!--pos page inner end-->
                 </div>
             </div>
+            
             <!--pos page end-->
             
             <!--footer area start-->
@@ -266,6 +295,67 @@
                 }
             });
         }
+    }
+    function dathang(){
+        var tenkh = $('#tenkh').val();
+        var diachi = $('#diachi').val();
+        var sdt = $('#sdt').val();
+        var email = $('#email').val();
+        var tongtien = $('#tongtien').text();
+        Tongtien = Number(tongtien.replace(/,/g, ""));
+        
+        let soluongElements = document.getElementsByClassName("product_quantity");
+        let soluongValues = []; // Mảng để lưu trữ nhiều giá trị
+            for (let i = 0; i < soluongElements.length; i++) {
+                let element = soluongElements[i];
+                console.log('element ', element);
+                let value = element.getAttribute('val');
+                console.log('i: ' + i + '; value: ' + value);
+                soluongValues.push(Number(value)); //Chuyển đổi thành số và lưu trữ trong mảng
+        }
+
+        let MaGElements = document.getElementsByClassName("product_id");
+        let MaGValues = []; // This should also be an array
+        for (let i = 0; i < MaGElements.length; i++) {
+            let element = MaGElements[i];
+            console.log('element ', element);
+            let value = element.getAttribute('val');
+            console.log('i: ' + i + '; value: ' + value);
+            MaGValues.push(value); 
+        };
+        //lấy giá trị mã sách
+        let MaSachElements = document.getElementsByClassName("product_idSP");
+        let MaSachValues = []; // This should also be an array
+        for (let i = 0; i < MaSachElements.length; i++) {
+            let element = MaSachElements[i];
+            console.log('element ', element);
+            let value = element.getAttribute('val');
+            console.log('i: ' + i + '; value: ' + value);
+            MaSachValues.push(value); 
+        };
+        for (let i = 0; i < soluongValues.length; i++) {
+            $.ajax('themhoadon.php', {//gom vo 1 ham, roi qua conntroller xu ly
+            type: 'POST',
+            data: {
+                'tenkh': tenkh,  
+                'email': email,  
+                'Tongtien': Tongtien,   
+                'sdt': sdt,
+                'diachi': diachi,
+                'MaGValues': MaGValues[i],
+                'MaSachValues': MaSachValues[i],
+                'soluongValues': soluongValues[i],
+
+            },
+            success: function (data, status, xhr) {
+                alert(data);
+                // console.log(data);
+                // console.log(status);
+
+            }
+        });
+        }
+        
     }
         </script>
     </body>
