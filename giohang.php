@@ -348,9 +348,9 @@
 
             },
             success: function (data, status, xhr) {
-                alert(data);
-                // console.log(data);
-                // console.log(status);
+                // alert(data);
+                console.log(data);
+                console.log(status);
 
             }
         });

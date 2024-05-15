@@ -89,7 +89,7 @@
                                         <h1 id=""><?php echo $row['TenSach']?></h1>
                                         <p id="MaSach" style="color: #a7a4a2;">Mã sách:<?php echo $row['MaSach']?></p>
                                         <div class="content_price mb-15">
-                                            <span id="Gia"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                            <span id="Gia"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
                                         </div>
                                         <div class="box_quantity mb-20">
                                             <form action="#">
@@ -213,7 +213,7 @@
                                             </div>
                                         </div>
                                         <div class="product_content">
-                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                            <span class="product_price"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
                                                 <h3 class="product_title"><?php echo $row['TenSach']?></h3>
                                         </div>
                                         <div class="product_info">
@@ -274,7 +274,7 @@
                                             </div>
                                         </div>
                                         <div class="product_content">
-                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                            <span class="product_price"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
                                                 <h3 class="product_title"><?php echo $row['TenSach']?></h3>
                                         </div>
                                         <div class="product_info">

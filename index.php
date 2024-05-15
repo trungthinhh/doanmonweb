@@ -114,7 +114,7 @@
                                                            </div>
                                                         </div>
                                                         <div class="product_content">
-                                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                            <span class="product_price"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
                                                             <h3 class="product_title">                                                               
                                                                     <?php echo $row['TenSach']?>
                                                             </h3>
@@ -175,7 +175,7 @@
                                                            </div>
                                                         </div>
                                                         <div class="product_content">
-                                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                            <span class="product_price"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
                                                             <h3 class="product_title"><?php echo $row['TenSach']?></h3>
                                                         </div>
                                                         <div class="product_info">
@@ -262,7 +262,7 @@
                                                            </div>
                                                         </div>
                                                         <div class="product_content">
-                                                            <span class="product_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                            <span class="product_price"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
                                                             <h3 class="product_title"><?php echo $row['TenSach']?></h3>
                                                         </div>
                                                         <div class="product_info">

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $arraymag = explode(",", $MaGValues);
     $arraymasp = explode(",", $MaSachValues);
     // Kiểm tra xem độ dài của hai mảng có bằng nhau không
-    if (count($array) != count($arraymag)) {
+    if (count($array) != count($arraymag)|| count($array) != count($arraymasp)) {
         return false;
     }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //print_r($soluong);
         $MaG = $arraymag[$i];
         $MaSach = $arraymasp[$i];
-        $sql = "INSERT INTO `hoadon`(`TenKH`, `DiaChi`, `SoDienThoai`, `Email`, `TongTien`, `NgayDat`,`MaG`,`MaSach`) 
+        $sql = "INSERT INTO `hoadon`(`TenKH`, `DiaChi`, `SoDienThoai`, `Email`, `TongTien`, `NgayDat`, `MaG`, `MaSach`) 
         VALUES (N'".$tenkh."',N'".$diachi."','".$sdt."','".$email."',".$Tongtien.",'".$ngaydat."','".$MaG."','".$MaSach."')";
         $results[] = $sql;
         // var_dump($results);
@@ -38,9 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // sp.SL = sp.SL - (SELECT SUM(hd.SL) FROM hoadon AS hd WHERE hd.MaSach = sp.MaSach)
         // WHERE sp.MaSach = '10'";
         // return ['results' => $sql, 'kqSP' => $kqSP];
-        echo "Thêm sản phẩm vào giỏ hàng thành công";
+        echo "Đặt hàng thành công";
 
-        $return = ['results' => $results];
+        return ['results' => $results];
 
 
 

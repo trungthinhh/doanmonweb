@@ -92,7 +92,7 @@
                                                                 <!-- <input type="hidden" id="MaG" val="<?php echo $row['MaG'];?>" value="<?php echo $row['MaG']; ?>"> -->
 
                                                                 <a href="#" id="tenSach"><?php echo $row['TenSach']?></a>
-                                                                <span class="cart_price"><?php echo number_format($row['Gia'],3, ',', ' ').' '.'đ'?></span>
+                                                                <span class="cart_price"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
                                                                 <span class="quantity"><?php echo $row['SL']?></span>
                                                             </div>
                                                             <div class="cart_remove">
