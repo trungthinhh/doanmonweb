@@ -304,10 +304,10 @@
         var tongtien = $('#tongtien').text();
         Tongtien = Number(tongtien.replace(/,/g, ""));
         
-        let soluongElements = document.getElementsByClassName("product_quantity");
+        let SLElements = document.getElementsByClassName("product_sl");
         let soluongValues = []; // Mảng để lưu trữ nhiều giá trị
-            for (let i = 0; i < soluongElements.length; i++) {
-                let element = soluongElements[i];
+            for (let i = 0; i < SLElements.length; i++) {
+                let element = SLElements[i];
                 console.log('element ', element);
                 let value = element.getAttribute('val');
                 console.log('i: ' + i + '; value: ' + value);
