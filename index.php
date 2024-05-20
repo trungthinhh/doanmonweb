@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Coron - Fashion eCommerce Bootstrap4 Template</title>
+        <title>Nhà sách Phương Nam</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -28,8 +28,6 @@
                  <!--header-->
                  <?php include_once 'header.php' ?>
                      <div class="pos_page_inner">  
-                     <!--khu vực tiêu đề -->
-                        <!--pos home section-->
                         <div class=" pos_home_section">
                             <div class="row pos_home">
                                 <div class="col-lg-3 col-md-8 col-12">

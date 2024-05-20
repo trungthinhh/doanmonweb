@@ -38,11 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         sp.SL = sp.SL - (SELECT SUM(hd.SL) FROM hoadon AS hd WHERE hd.MaSach = sp.MaSach)
         WHERE sp.MaSach = '".$MaSach."'";
         $kqSP= $kq1;
-        // var_dump($kqSP);die();
+        // var_dump($kqSP);var_dump($sql); die();
+        
         if (($connect->query($sql) === TRUE)&&($connect->query($kq1) === TRUE)) {
-            echo "Thêm sản phẩm vào giỏ hàng thành công";
+            echo "Đặt hàng thành công";
+            session_start();
+            $_SESSION['giohang']['Email']=$email;
+            // header('Location: hoadon.php');
+            
         } else {
-            echo "Lỗi khi thêm sản phẩm mới: " . $connect->error;
+            echo "Lỗi khi đặt hàng: " . $connect->error;
         }      
     }
     return ['results' => $results, 'kqSP' => $kqSP];

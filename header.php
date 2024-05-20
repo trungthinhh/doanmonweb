@@ -29,7 +29,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="header_links">
                                                 <ul>
-                                                    <li><a href="#" title="Contact">Liên hệ</a></li>
+                                                    <li><a href="" title="Contact"></a></li>
                                                     <li><a href="#" title="wishlist">Đăng nhập</a></li>
                                                     <li><a href="#" title="My account">Đăng ký</a></li>
                                                 </ul>
@@ -52,8 +52,8 @@
                                         <div class="col-lg-9 col-md-9">
                                             <div class="header_right_info">
                                                 <div class="search_bar">
-                                                    <form action="#">
-                                                        <input placeholder="Search..." type="text">
+                                                    <form action="danhmuctimkiem.php?" method="GET">
+                                                        <input name="tukhoa" placeholder="Search..." type="text">
                                                         <button type="submit"><i class="fa fa-search"></i></button>
                                                     </form>
                                                 </div>
@@ -125,9 +125,26 @@
                                                                 <div class="mega_menu jewelry">
                                                                     <div class="mega_items jewelry">
                                                                         <ul>
-                                                                            <li><a href="">Sách Văn Học</a></li>
-                                                                            <li><a href="">Sách Kỹ Năng</a></li>
-                                                                            <li><a href="">Sách Tiểu Thuyết</a></li>
+                                                                        <?php
+                                                                            include 'db.inc';
+                                                                            
+                                                                            $sql = "SELECT * FROM `danhmuc`";
+                                                                            $result = mysqli_query($connect,$sql);
+                                                                            $data = [];
+                                                                            $rowNum = 1;
+                                                                            while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                                                                $data[] = array(
+                                                                                    'MaDM' => $row['MaDM'],
+                                                                                    'TenSP' => $row['TenSP'],
+                                                                                    'img' => $row['img'],
+                                                                                );
+                                                                            }
+                                                                        ?>       
+                                                                        <?php
+                                                                            foreach ($data as $row):
+                                                                        ?>   
+                                                                            <li><a href='danhmuc.php?MaDM="<?php echo $row['MaDM']?>"'><?php echo $row['TenSP']?></a></li>
+                                                                        <?php endforeach;?> 
                                                                         </ul>
                                                                     </div>
                                                                 </div>

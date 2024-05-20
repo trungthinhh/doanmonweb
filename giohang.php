@@ -130,7 +130,8 @@
                                                            <p class="cart_amount" id="tongtien" val="<?php echo $tong;?>"><?php echo number_format($tong,0)." "?></p>
                                                        </div>
                                                        <div class="cart_submit">
-                                                            <button type="submit" onclick="dathang()" style="cursor: hand;background:red;">Đặt hàng</button>
+                                                            <button type="submit" name="giohang" onclick="dathang()" style="cursor: hand;background:red;">Đặt hàng</button>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,19 +142,19 @@
                                                     <div class="coupon_inner">
                                                        <div class="cart_sub">
                                                            <p>Tên khách hàng:</p>
-                                                           <p class="cart_infor"><input type="text" value="uyên" id="tenkh"></p>
+                                                           <p class="cart_infor"><input type="text" value="" id="tenkh"></p>
                                                        </div>
                                                        <div class="cart_sub ">
                                                            <p>Địa chỉ:</p>
-                                                           <p class="cart_infor"><input type="text" value="mỹ tho" id="diachi"></p>
+                                                           <p class="cart_infor"><input type="text" value="" id="diachi"></p>
                                                        </div>
                                                        <div class="cart_sub ">
                                                            <p>Số điện thoại:</p>
-                                                           <p class="cart_infor"><input type="text" value="0123456789" id="sdt"></p>
+                                                           <p class="cart_infor"><input type="text" value="" id="sdt"></p>
                                                        </div>
                                                        <div class="cart_sub ">
                                                            <p>Email:</p>
-                                                           <p class="cart_infor"><input type="text" value="uyen12@gmail.com" id="email"></p>
+                                                           <p class="cart_infor"><input type="text" name="Email" value="" id="email"></p>
                                                        </div>
                                                     </div>
                                                 </div>
@@ -348,9 +349,10 @@
 
             },
             success: function (data, status, xhr) {
-                // alert(data);
-                console.log(data);
-                console.log(status);
+                alert(data);
+                window.open("hoadon.php", "_top");
+                // console.log(data);
+                // console.log(status);
 
             }
         });
