@@ -107,9 +107,6 @@
                                                            <div class="img_icone">
                                                                <img src="<?php echo $row['img']?>" alt="">
                                                            </div>
-                                                           <div class="product_action">
-                                                               <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
-                                                           </div>
                                                         </div>
                                                         <div class="product_content">
                                                             <span class="product_price"><?php echo number_format($row['Gia'],0).' '.'đ'?></span>
@@ -167,9 +164,6 @@
                                                            <a href="" ><img src="<?php echo $row['img']?>" alt=""></a> 
                                                            <div class="img_icone">
                                                                <img src="<?php echo $row['img']?>" alt="">
-                                                           </div>
-                                                           <div class="product_action">
-                                                               <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                                            </div>
                                                         </div>
                                                         <div class="product_content">
@@ -254,9 +248,6 @@
                                                            <a href="" ><img src="<?php echo $row['img']?>" alt=""></a> 
                                                            <div class="img_icone">
                                                                <img src="<?php echo $row['img']?>" alt="">
-                                                           </div>
-                                                           <div class="product_action">
-                                                               <a href=""> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                                            </div>
                                                         </div>
                                                         <div class="product_content">

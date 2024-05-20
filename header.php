@@ -45,7 +45,7 @@
                                        <!--logo start-->
                                         <div class="col-lg-3 col-md-3">
                                             <div class="logo">
-                                                <a href="index.html"><img src="tttl/logo.jpg" alt=""></a>
+                                                <a href="index.php"><img src="tttl/logo.jpg" alt=""></a>
                                             </div>
                                         </div>
                                         <!--logo end-->
