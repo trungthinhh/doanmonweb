@@ -41,16 +41,6 @@
                                         </div>
                                     </div>
                                     <!--sidebar banner end-->
-                                    <!--categorie menu start-->
-                                    <div class="sidebar_widget catrgorie mb-35">
-                                        <h3>Danh mục</h3>
-                                        <ul>
-                                            <li><a href="">Sách Văn Học</a></li>
-                                            <li><a href="">Sách Kỹ Năng</a></li>
-                                            <li><a href="">Sách Tiểu Thuyết</a></li>
-                                        </ul>
-                                    </div>
-                                    <!--categorie menu end-->
 <!--sidebar banner-->
                                     <div class="sidebar_widget bottom ">
                                         <div class="banner_img">
@@ -65,8 +55,6 @@
                                     <div class="banner_slider slider_1">
                                         <div class="slider_active owl-carousel">
                                             <div class="single_slider" style="background-image: url(tttl/Banner1.jpg)"></div>
-                                            <div class="single_slider" style="background-image: url(tttl/Banner2.jpg)"></div>
-                                            <div class="single_slider" style="background-image: url(tttl/Banner3.jpg)"></div>
                                         </div>
                                     </div> 
                                     <!--banner slider start-->

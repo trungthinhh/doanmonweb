@@ -44,7 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Đặt hàng thành công";
             session_start();
             $_SESSION['giohang']['Email']=$email;
-            // header('Location: hoadon.php');
             
         } else {
             echo "Lỗi khi đặt hàng: " . $connect->error;

@@ -350,7 +350,7 @@
             },
             success: function (data, status, xhr) {
                 alert(data);
-                window.open("hoadon.php", "_top");
+                window.location="hoadon.php";
                 // console.log(data);
                 // console.log(status);
 

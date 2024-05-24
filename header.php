@@ -29,7 +29,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="header_links">
                                                 <ul>
-                                                    <li><a href="" title="Contact"></a></li>
+                                                    <li><a href="hoadon.php" title="Contact">Đơn hàng của bạn</a></li>
                                                     <li><a href="#" title="wishlist">Đăng nhập</a></li>
                                                     <li><a href="#" title="My account">Đăng ký</a></li>
                                                 </ul>
@@ -53,12 +53,12 @@
                                             <div class="header_right_info">
                                                 <div class="search_bar">
                                                     <form action="danhmuctimkiem.php?" method="GET">
-                                                        <input name="tukhoa" placeholder="Search..." type="text">
+                                                        <input name="tukhoa" placeholder="Nhập từ khóa muốn tìm..." type="text">
                                                         <button type="submit"><i class="fa fa-search"></i></button>
                                                     </form>
                                                 </div>
                                                 <div class="shopping_cart">
-                                                    <a href="#"><i class="fa fa-shopping-cart"></i>Items - Tổng<i class="fa fa-angle-down"></i></a>
+                                                    <a href="#"><i class="fa fa-shopping-cart"></i>Giỏ hàng<i class="fa fa-angle-down"></i></a>
 
                                                     <!--mini cart-->
                                                              
