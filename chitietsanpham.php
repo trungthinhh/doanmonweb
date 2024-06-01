@@ -50,7 +50,7 @@
                             <?php
                                 include 'db.inc';
                                 $id = $_GET['MaSach'];
-                                $sql = "select * from doanmonweb.product where MaSach =".$id."";
+                                $sql = "select * from doanmonweb.sanpham where MaSach =".$id."";
                                 $result = mysqli_query($connect,$sql);
                                 $data = [];
                                 $rowNum = 1;
@@ -67,6 +67,7 @@
                                 }
                             ?>       
                             <?php
+                                if($data>0){
                                 foreach ($data as $row):
                             ?>                                     
                             <div class="product_tab fix"> 
@@ -102,10 +103,18 @@
                                         </div>
 
                                         <div class="product_stock mb-20">
-                                           <p>Số lượng có sẵn: <?php echo $row['SL']?></p>
+                                           <p>Số lượng có sẵn: </p>
+                                           <p style="color:red;font-weight:bold;">
+                                            <?php 
+                                                if($row['SL']>0){
+                                                    echo $row['SL'];
+                                                } 
+                                                else
+                                                    echo "hết hàng";
+                                                ?></p>
                                         </div>
                                     </div>
-                                    <?php endforeach;?>
+                                    <?php endforeach;}?>
                                 </div>
                           
                             </div>
@@ -181,7 +190,7 @@
                             <?php
                                 include 'db.inc';
                                 $sql = "select dm.MaDM,dm.TenSP,pd.MaSach,Gia,SL,
-                                MoTa,pd.img,TenSach FROM product AS pd,danhmuc AS dm 
+                                MoTa,pd.img,TenSach from sanpham AS pd,danhmuc AS dm 
                                 WHERE pd.MaDM=dm.MaDM and dm.TenSP=N'Kỹ Năng'";
                                 $result = mysqli_query($connect,$sql);
                                 $data = [];
@@ -239,7 +248,7 @@
                                 <?php
                                     include 'db.inc';
                                     $sql = "select  dm.MaDM,dm.TenSP,pd.MaSach,Gia,SL,
-                                    MoTa,pd.img,TenSach FROM product AS pd,danhmuc AS dm 
+                                    MoTa,pd.img,TenSach from sanpham AS pd,danhmuc AS dm 
                                     WHERE pd.MaDM=dm.MaDM and dm.TenSP=N'Văn Học'";
                                     $result = mysqli_query($connect,$sql);
                                     $data = [];

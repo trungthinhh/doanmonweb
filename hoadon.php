@@ -120,7 +120,7 @@ $_SESSION['giohang']['Email'];
                                                         <?php
                                                             // require("connect.php");
                                                         include 'db.inc';
-                                                        $sql = "select Gia,pd.img,pd.MaSach,pd.TenSach,hd.SL,hd.TongTien FROM `hoadon` as hd, `product` as pd
+                                                        $sql = "select Gia,pd.img,pd.MaSach,pd.TenSach,hd.SL,hd.TongTien FROM `hoadon` as hd, `sanpham` as pd
                                                         WHERE pd.MaSach=hd.MaSach and Email='".$_SESSION['giohang']['Email']."' group by MaSach";
                                                         //var_dump($sql);die();
                                                         $result = mysqli_query($connect,$sql);

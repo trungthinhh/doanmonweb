@@ -57,7 +57,7 @@
                                             $keyword = $_GET['tukhoa'];
                                             //var_dump($keyword);die();
                                             // Truy vấn tìm kiếm
-                                            $sql = "select * FROM product WHERE TenSach LIKE '%".$keyword."%'";
+                                            $sql = "select * from sanpham WHERE TenSach LIKE '%".$keyword."%'";
                                             $result = mysqli_query($connect,$sql);
                                             $data = [];
                                             $rowNum = 1;

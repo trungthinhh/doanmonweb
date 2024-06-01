@@ -55,7 +55,7 @@
                                         $id=$_GET['MaDM'];
                                         //var_dump($tukhoa);die();
                                         $sql = "select dm.MaDM,dm.TenSP,pd.MaSach,Gia,SL,
-                                        MoTa,pd.img,TenSach FROM product AS pd,danhmuc AS dm 
+                                        MoTa,pd.img,TenSach from sanpham AS pd,danhmuc AS dm 
                                         WHERE pd.MaDM=dm.MaDM and dm.MaDM=".$id."";
                                         $result = mysqli_query($connect,$sql);
                                         $data = [];

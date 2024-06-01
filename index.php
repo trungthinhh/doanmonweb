@@ -69,7 +69,7 @@
                                             <?php
                                                     // require("connect.php");
                                                 include 'db.inc';
-                                                $sql = "select * from product";
+                                                $sql = "select * from sanpham";
                                                 $result = mysqli_query($connect,$sql);
                                                 $data = [];
                                                 $rowNum = 1;
@@ -126,7 +126,7 @@
                                                     // require("connect.php");
                                                 include 'db.inc';
                                                 $sql = "select dm.MaDM,dm.TenSP,pd.MaSach,Gia,SL,
-                                                MoTa,pd.img,TenSach FROM product AS pd,danhmuc AS dm 
+                                                MoTa,pd.img,TenSach from sanpham AS pd,danhmuc AS dm 
                                                 WHERE pd.MaDM=dm.MaDM and dm.TenSP=N'Văn Học'";
                                                 $result = mysqli_query($connect,$sql);
                                                 $data = [];
@@ -210,7 +210,7 @@
                                                     // require("connect.php");
                                                 include 'db.inc';
                                                 $sql = "select dm.MaDM,dm.TenSP,pd.MaSach,Gia,SL,
-                                                MoTa,pd.img,TenSach FROM product AS pd,danhmuc AS dm 
+                                                MoTa,pd.img,TenSach from sanpham AS pd,danhmuc AS dm 
                                                 WHERE pd.MaDM=dm.MaDM and dm.TenSP=N'Kỹ Năng'";
                                                 $result = mysqli_query($connect,$sql);
                                                 $data = [];

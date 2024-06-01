@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         VALUES (N'".$tenkh."',N'".$diachi."','".$sdt."','".$email."',".$soluong.",".$Tongtien.",'".$ngaydat."','".$MaG."','".$MaSach."')";
         $results= $sql;
 
-        $kq1="update product AS sp SET 
+        $kq1="update sanpham AS sp SET 
         sp.SL = sp.SL - (SELECT SUM(hd.SL) FROM hoadon AS hd WHERE hd.MaSach = sp.MaSach)
         WHERE sp.MaSach = '".$MaSach."'";
         $kqSP= $kq1;

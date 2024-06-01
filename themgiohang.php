@@ -13,15 +13,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo "Mã sách đã được gửi: " . $maSach;
     // echo "Giá đã được gửi: " . $gia;
     // echo "hinh: " . $hinh;
-    $sql = "INSERT INTO `giohang`(`img`, `TenSach`, `SL`, `Gia`, `MaSach`) 
-    VALUES ('".$hinh."',N'".$tenSach."',".$amount.",".$gia.",'".$maSach."')";
+    $sql_sl="select * from `sanpham` where MaSach='".$maSach."'";
+    
     // var_dump($sql);die();
     // Thực thi truy vấn và kiểm tra kết quả
-    if ($connect->query($sql) === TRUE) {
-        echo "Thêm sản phẩm vào giỏ hàng thành công";
-    } else {
-        echo "Lỗi khi thêm sản phẩm mới: " . $connect->error;
-    }
+    $result_tonkho = $connect->query($sql_sl);
+    if ($result_tonkho->num_rows > 0) {
+        $row_tonkho = $result_tonkho->fetch_assoc();
+        $tonkho = $row_tonkho["SL"];
+        if ($tonkho >= $amount) {
+            // Thêm sản phẩm vào giỏ hàng
+            // ... (Thực hiện truy vấn INSERT như bình thường)
+            $sql = "INSERT INTO `giohang`(`img`, `TenSach`, `SL`, `Gia`, `MaSach`) 
+            VALUES ('".$hinh."',N'".$tenSach."',".$amount.",".$gia.",'".$maSach."')";
+            if ($connect->query($sql) === TRUE){
+                echo "Thêm sản phẩm vào giỏ hàng thành công";
+            }
+            else {
+                echo "Lỗi khi thêm sản phẩm mới: " . $connect->error;
+            }
+            
+        } 
+        else {
+            echo "Sản phẩm đã hết hàng. Vui lòng đặt hàng khi có hàng.";
+        }
+    } 
 }
 
 
