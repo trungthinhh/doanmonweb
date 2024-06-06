@@ -56,11 +56,11 @@ session_start();
                                                     <div class="coupon_inner">
                                                        <div class="cart_subb">
                                                            <p style="font-size: 20px;text-align: center;color:black;">Tên tài khoản</p>
-                                                           <p class="cart_infor"><input type="text" value="nhi12@gmail.com" name="Email" id="email"></p>
+                                                           <p class="cart_infor"><input type="text" value="thinh12@gmail.com" name="Email" id="email"></p>
                                                        </div>
                                                        <div class="cart_subb">
                                                            <p style="font-size: 20px;text-align: center;color:black;">Mật khẩu</p>
-                                                           <p class="cart_infor"><input type="password" value="Nhi@!23" id="matkhau"></p>
+                                                           <p class="cart_infor"><input type="password" value="Thinh@123" id="matkhau"></p>
                                                        </div>
                                                        <button name="dangnhap" id="dangnhap" style="margin-left:210px;margin-right:210px;">Đăng nhập</button>
                                                     </div>
