@@ -156,6 +156,10 @@
                                                            <p>Email:</p>
                                                            <p class="cart_infor"><input type="text" name="Email" value="" id="email"></p>
                                                        </div>
+                                                       <div class="cart_sub ">
+                                                           <p>Mật Khẩu:</p>
+                                                           <p class="cart_infor"><input type="password" name="MatKhau" value="" id="MatKhau"></p>
+                                                       </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -302,6 +306,7 @@
         var diachi = $('#diachi').val();
         var sdt = $('#sdt').val();
         var email = $('#email').val();
+        var MatKhau = $('#MatKhau').val();
         var tongtien = $('#tongtien').text();
         Tongtien = Number(tongtien.replace(/,/g, ""));
         
@@ -340,6 +345,7 @@
             data: {
                 'tenkh': tenkh,  
                 'email': email,  
+                'MatKhau': MatKhau, 
                 'Tongtien': Tongtien,   
                 'sdt': sdt,
                 'diachi': diachi,
@@ -350,7 +356,7 @@
             },
             success: function (data, status, xhr) {
                 alert(data);
-                window.location="hoadon.php";
+               // window.location="hoadon.php";
                 // console.log(data);
                 // console.log(status);
 

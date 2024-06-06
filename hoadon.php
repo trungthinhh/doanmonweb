@@ -1,7 +1,7 @@
 <?php 
 session_start();
-$_SESSION['giohang']['Email'];
-// print_r($_SESSION['giohang']['Email']);
+$_SESSION['dangnhap']['Email'];
+// print_r($_SESSION['dangnhap']['Email']);
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -60,7 +60,7 @@ $_SESSION['giohang']['Email'];
                                                         <?php
                                                             // require("connect.php");
                                                         include 'db.inc';
-                                                        $sql = "SELECT * FROM `hoadon` WHERE Email='".$_SESSION['giohang']['Email']."' GROUP by Email";
+                                                        $sql = "SELECT * FROM `hoadon` WHERE Email='".$_SESSION['dangnhap']['Email']."' GROUP by Email";
                                                         //var_dump($sql);die();
                                                         $result = mysqli_query($connect,$sql);
                                                         $data = [];
@@ -121,7 +121,7 @@ $_SESSION['giohang']['Email'];
                                                             // require("connect.php");
                                                         include 'db.inc';
                                                         $sql = "select Gia,pd.img,pd.MaSach,pd.TenSach,hd.SL,hd.TongTien FROM `hoadon` as hd, `sanpham` as pd
-                                                        WHERE pd.MaSach=hd.MaSach and Email='".$_SESSION['giohang']['Email']."' group by MaSach";
+                                                        WHERE pd.MaSach=hd.MaSach and Email='".$_SESSION['dangnhap']['Email']."' group by MaSach";
                                                         //var_dump($sql);die();
                                                         $result = mysqli_query($connect,$sql);
                                                         $data = [];

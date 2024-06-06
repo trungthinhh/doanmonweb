@@ -29,8 +29,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="header_links">
                                                 <ul>
-                                                    <li><a href="hoadon.php" title="Contact">Đơn hàng của bạn</a></li>
-                                                    <li><a href="#" title="wishlist">Đăng nhập</a></li>
+                                                    <li><a href="dangnhap.php" title="wishlist">Đăng nhập</a></li>
                                                     <li><a href="#" title="My account">Đăng ký</a></li>
                                                 </ul>
                                             </div>   

@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sdt = $_POST['sdt'];
     $diachi = $_POST['diachi'];
     $email = $_POST['email'];
+    $MatKhau = $_POST['MatKhau'];
     $Tongtien = $_POST['Tongtien'];
     $ngaydat = date('Y-m-d H:i:s');
     $soluongValues = $_POST['soluongValues'];
@@ -30,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $MaG = $arraymag[$i];
         $MaSach = $arraymasp[$i];
 
-        $sql = "INSERT INTO `hoadon`(`TenKH`, `DiaChi`, `SoDienThoai`, `Email`,`SL`, `TongTien`, `NgayDat`, `MaG`, `MaSach`) 
-        VALUES (N'".$tenkh."',N'".$diachi."','".$sdt."','".$email."',".$soluong.",".$Tongtien.",'".$ngaydat."','".$MaG."','".$MaSach."')";
-        $results= $sql;
-
+        $sql = "INSERT INTO `hoadon`(`TenKH`, `DiaChi`, `SoDienThoai`, `Email`,`MatKhau`,`SL`, `TongTien`, `NgayDat`, `MaG`, `MaSach`) 
+        VALUES (N'".$tenkh."',N'".$diachi."','".$sdt."','".$email."','".$MatKhau."',".$soluong.",".$Tongtien.",'".$ngaydat."','".$MaG."','".$MaSach."')";
+        $results = $sql;
+       // var_dump($results);
         $kq1="update sanpham AS sp SET 
         sp.SL = sp.SL - (SELECT SUM(hd.SL) FROM hoadon AS hd WHERE hd.MaSach = sp.MaSach)
         WHERE sp.MaSach = '".$MaSach."'";
@@ -41,10 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // var_dump($kqSP);var_dump($sql); die();
         
         if (($connect->query($sql) === TRUE)&&($connect->query($kq1) === TRUE)) {
-            echo "Đặt hàng thành công";
-            session_start();
-            $_SESSION['giohang']['Email']=$email;
-            
+            echo "Đặt hàng thành công";            
         } else {
             echo "Lỗi khi đặt hàng: " . $connect->error;
         }      
